@@ -1,6 +1,6 @@
 This set of scripts will prep a microSD card to be used with the [SMILE-pi](http://smile-pi.org) Project.
 
-First create an [Raspbian Jessie Lite](https://www.raspberrypi.org/downloads/raspbian/) image on a microSD card.
+First create an [Raspbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/) image on a microSD card.
 
 Place the microsd in the raspberry pi and boot it up.
 
