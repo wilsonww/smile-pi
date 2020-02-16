@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# sudo apt edit-sources
+# deb http://raspbian.raspberrypi.org/raspbian bullseye main contrib non-free rpi
+
 echo "basic package"
 
 if [ -f "/usr/lib/systemd/system/create_ap.service" ]; then
@@ -42,16 +45,18 @@ then
   echo "if [ -f ~/.bash_aliases ]; then source ~/.bash_aliases; fi" >> ~/.bashrc
 fi
 
-echo "installing rubies and javascripts"
-sudo apt-get --yes --force-yes install nodejs
-sudo apt-get --yes --force-yes install python
-sudo apt-get --yes --force-yes install python-pip
-sudo apt-get --yes --force-yes install ruby
-sudo apt-get --yes --force-yes install ruby-dev
-echo "done with rubies and pythons"
+echo "installing rubies, pythons and javascripts"
+sudo apt-get --yes --allow-unauthenticated install nodejs
+sudo apt-get --yes --allow-unauthenticated install npm
+sudo apt-get --yes --allow-unauthenticated install python
+sudo apt-get --yes --allow-unauthenticated install python-pip
+sudo apt-get --yes --allow-unauthenticated install ruby
+sudo apt-get --yes --allow-unauthenticated install ruby-dev
+sudo apt-get --yes --allow-unauthenticated install rubygems-integration
+echo "done with rubies, javascripts and pythons"
 
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install -y nodejs
+echo "make npm up to date"
+sudo npm install -g npm
 
 if [ ! -f ~/.npmrc ]; then
   echo "setup ~/.npmrc"
@@ -70,9 +75,6 @@ if [ ! -f ~/.bash_aliases ]; then
   cp ~/smile-pi/setup_files/.bash_aliases ~/.bash_aliases
 fi
 source ~/.bash_aliases
-
-echo "make npm up to date"
-sudo npm install -g npm
 
 #https://github.com/oblique/create_ap
 echo "install create_ap"
