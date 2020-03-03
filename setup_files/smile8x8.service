@@ -1,0 +1,12 @@
+[Unit]
+Description=LED display Green Smile
+After=network.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pi/smile-pi/setup_files/smile.py
+ExecStop=/usr/bin/python3 /home/pi/smile-pi/setup_files/sad.py
+RemainAfterExit=yes
+Restart=always
+RestartSec=30
+[Install]
+WantedBy=multi-user.target
