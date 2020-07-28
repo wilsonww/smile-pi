@@ -2,6 +2,7 @@
 
 echo "LED 8x8 python prep"
 cd /home/pi/
+sudo apt-get install python3-pip
 sudo pip3 install rpi_ws281x
 
 echo "systemctl service configurations"

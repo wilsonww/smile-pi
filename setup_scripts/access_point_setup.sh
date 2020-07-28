@@ -1,7 +1,7 @@
 # Set up a Wireless Access Point so that we can get to the SMILE-pi from WiFi
-sudo apt install dnsmasq hostapd
+sudo apt --yes --allow-unauthenticated install dnsmasq hostapd
 
-sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
+sudo DEBIAN_FRONTEND=noninteractive apt --yes --allow-unauthenticated install netfilter-persistent iptables-persistent
 
 # Add this text to /etc/dhcpcd.conf
 sudo bash -c 'echo "interface wlan0" >> /etc/dhcpcd.conf'
