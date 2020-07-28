@@ -15,7 +15,7 @@ alias pip=/usr/bin/pip2
 #export MANPATH="~/.node_modules/share/man:$(manpath)"
 
 #NPMPATH=$HOME/.node_modules/bin
-GEMPATH=$(ruby -rubygems -e 'puts Gem.user_dir')/bin
+GEMPATH=$(ruby -e 'puts Gem.user_dir')/bin
 NODE_PATH=~/.node_modules/bin
 
 # to allow gs / ghostscript to work

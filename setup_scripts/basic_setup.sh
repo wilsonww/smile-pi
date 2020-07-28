@@ -5,14 +5,6 @@
 
 echo "basic package"
 
-if [ -f "/usr/lib/systemd/system/create_ap.service" ]; then
-  echo "create_ap service and Wifi network already configured"
-  echo "re-download a fresh create_ap.service template and reconfigure"
-  cd ~
-  rm -rf ~/smile-pi
-  git clone https://github.com/canuk/smile-pi
-fi
-
 if ( ! grep -q 'gitprompt.sh' ~/.bashrc ); then
   echo "install bash-git-prompt"
 
@@ -76,13 +68,6 @@ if [ ! -f ~/.bash_aliases ]; then
 fi
 source ~/.bash_aliases
 
-#https://github.com/oblique/create_ap
-echo "install create_ap"
-sudo apt-get --yes --allow-unauthenticated install hostapd dnsmasq
-git clone https://github.com/oblique/create_ap ~/create_ap
-cd create_ap
-sudo make install
-
 # need to reboot before installing compass
 echo "install compass"
 sudo gem install compass --no-ri --no-rdoc
@@ -95,25 +80,6 @@ echo "install nginx"
 sudo apt-get --yes --allow-unauthenticated install nginx
 echo "install fancyindex module for nginx"
 sudo apt-get --yes --allow-unauthenticated install nginx-extras
-
-echo "setup create_ap"
-#note to self, Raspbian Jesse Lite already uses systemd
-LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
-ETH0_NAME="$(ip addr | grep 2: | awk '{print $2}' | tail -1  | sed s/://g)"
-
-cd ~/smile-pi/setup_files/
-sudo rm -rf /usr/lib/systemd/system/create_ap.service
-sudo cp -rf create_ap.service /usr/lib/systemd/system/create_ap.service
-sudo sed -i 's@ SMILE @ SMILE_'"$LAST_FOUR_MAC_ADDRESS"' @' /usr/lib/systemd/system/create_ap.service
-sudo sed -i 's@ eth0 @ '"$ETH0_NAME"' @' /usr/lib/systemd/system/create_ap.service
-
-# If not vagrant, i.e. booting up a rpi3
-#if [ ! -d /vagrant ]; then
-  echo "systemctl for create_ap"
-  sudo systemctl enable create_ap
-  sudo systemctl stop create_ap
-  sudo systemctl start create_ap
-#fi
 
 echo "setup nginx conf files"
 
