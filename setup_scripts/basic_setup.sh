@@ -78,7 +78,7 @@ source ~/.bash_aliases
 
 #https://github.com/oblique/create_ap
 echo "install create_ap"
-sudo apt-get --yes --force-yes install hostapd dnsmasq
+sudo apt-get --yes --allow-unauthenticated install hostapd dnsmasq
 git clone https://github.com/oblique/create_ap ~/create_ap
 cd create_ap
 sudo make install
@@ -92,7 +92,9 @@ echo "install node-gyp"
 sudo npm install -g node-gyp
 
 echo "install nginx"
-sudo apt-get --yes --force-yes install nginx
+sudo apt-get --yes --allow-unauthenticated install nginx
+echo "install fancyindex module for nginx"
+sudo apt-get --yes --allow-unauthenticated install nginx-extras
 
 echo "setup create_ap"
 #note to self, Raspbian Jesse Lite already uses systemd

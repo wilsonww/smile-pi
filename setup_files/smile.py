@@ -19,7 +19,7 @@ LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
 w = Color(150, 150, 150)
 g = Color(0, 255, 0)
-r = Color(255, , 0)
+r = Color(255, 0, 0)
 e = Color(0, 0, 0)
 
 smile = [

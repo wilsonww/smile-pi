@@ -1,16 +1,17 @@
-
 user www-data www-data;
-worker_processes  1;
+worker_processes auto;
+worker_rlimit_nofile 1096; # should be bigger than worker_connections
+pid /run/nginx.pid;
 
-error_log  /var/log/nginx/error.log;
-
-#pid        logs/nginx.pid;
-
+load_module "modules/ngx_http_fancyindex_module.so";
 
 events {
-    worker_connections  1024;
+    use epoll;
+    worker_connections 1024;
+    multi_accept on;
 }
 
+error_log  /var/log/nginx/error.log;
 
 http {
     include       mime.types;
@@ -47,7 +48,7 @@ http {
         }
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
-            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            fastcgi_pass unix:/var/run/php7.3-fpm.sock;
         }
 
         root   /usr/share/nginx/html;
@@ -58,7 +59,7 @@ http {
         #}
         #location / {
         #    #root   /home/vagrant/smile_v2/frontend/src;
-  #    root   /usr/share/nginx/html;
+        #    root   /usr/share/nginx/html;
         #    index  index.html index.htm;
         #    autoindex on;
         #}
@@ -93,7 +94,7 @@ http {
         }
         location /couchdb {
             rewrite     /couchdb/(.*)      /smile/$1  break;
-            rewrite     /couchdb           /smile    break;
+            rewrite     /couchdb           /smile     break;
             proxy_pass http://127.0.0.1:5984;
             proxy_redirect          off;
             proxy_set_header        Host            $host;
@@ -119,55 +120,7 @@ http {
             root   /usr/share/nginx/html;
         }
 
-        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-        #
-        #location ~ \.php$ {
-        #    proxy_pass   http://127.0.0.1;
-        #}
-
-        # deny access to .htaccess files, if Apache's document root
-        # concurs with nginx's one
-        #
-        #location ~ /\.ht {
-        #    deny  all;
-        #}
     }
-
-
-    # another virtual host using mix of IP-, name-, and port-based configuration
-    #
-    #server {
-    #    listen       8000;
-    #    listen       somename:8080;
-    #    server_name  somename  alias  another.alias;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
-
-
-    # HTTPS server
-    #
-    #server {
-    #    listen       443;
-    #    server_name  localhost;
-
-    #    ssl                  on;
-    #    ssl_certificate      cert.pem;
-    #    ssl_certificate_key  cert.key;
-
-    #    ssl_session_timeout  5m;
-
-    #    ssl_protocols  SSLv2 SSLv3 TLSv1;
-    #    ssl_ciphers  HIGH:!aNULL:!MD5;
-    #    ssl_prefer_server_ciphers   on;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
-
+    # include virtual host configs
+    include sites-enabled/*;
 }

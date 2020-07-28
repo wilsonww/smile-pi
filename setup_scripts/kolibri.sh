@@ -14,23 +14,8 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys DC5BAA93F
 sudo apt update
 
 sudo apt -y --allow-unauthenticated install kolibri kolibri-server
-# Choose port 8008
-
-server {
-  listen 8008;
-  listen [::]:8008;
-
-  server_name kolibri kolibri.library;
-
-  location / {
-    proxy_pass http://127.0.0.1:8008;
-  }
-}
-
 
 sudo nano /usr/lib/python3/dist-packages/kolibri/utils/cli.py
 # change line 430 serve_http = OPTIONS["Server"]["CHERRYPY_START"]
 # to serve_http = True
-
-# add to ~/.bashrc
-# KOLIBRI_CHERRYPY_START=True
+# I don't know why, but options.ini would change back to CHERRYPY_START=False on every reboot.

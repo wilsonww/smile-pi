@@ -1,0 +1,14 @@
+[Unit]
+Description=Show Sad Face at shutdown
+Requires=network.target
+DefaultDependencies=no
+Before=shutdown.target reboot.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/usr/bin/python3 /home/pi/smile-pi/setup_files/sad.py
+
+[Install]
+WantedBy=multi-user.target
