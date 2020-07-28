@@ -48,7 +48,7 @@ sudo apt-get --yes --allow-unauthenticated install rubygems-integration
 echo "done with rubies, javascripts and pythons"
 
 echo "make npm up to date"
-sudo npm install -g npm
+sudo npm install npm@latest -g
 
 if [ ! -f ~/.npmrc ]; then
   echo "setup ~/.npmrc"
