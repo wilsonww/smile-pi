@@ -122,5 +122,7 @@ http {
 
     }
     # include virtual host configs
-    include sites-enabled/*;
+    # include sites-enabled/*;
+    # Include this to utilize nginx with Kolibri
+    include /etc/nginx/conf.d/*.conf;
 }

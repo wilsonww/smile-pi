@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Setup CouchDB 
+# Setup CouchDB
 
 sudo apt update
-sudo apt -y upgrade
+sudo apt --yes --allow-unauthenticated upgrade
 
 sudo apt update
 sudo apt-get --no-install-recommends -y install build-essential pkg-config erlang libicu-dev libmozjs185-dev libcurl4-openssl-dev
@@ -13,10 +13,7 @@ sudo adduser --system \
         --group --gecos \
         "CouchDB Administrator" couchdb
 
-curl -s https://api.github.com/repos/apache/couchdb/releases/latest \
-  | grep browser_download_url \
-  | cut -d '"' -f 4 \
-  | wget -qi -
+wget http://apache.cs.utah.edu/couchdb/source/2.3.1/apache-couchdb-2.3.1.tar.gz
 
 tar xvf apache-couchdb-*.tar.gz
 cd apache-couchdb-*/
@@ -27,8 +24,8 @@ make release
 sudo cp -r rel/couchdb /home/couchdb
 sudo chown -R couchdb:couchdb /home/couchdb/
 
-find /home/couchdb -type d -exec chmod 0770 {} \;
-chmod 0644 /home/couchdb/couchdb/etc/*
+sudo find /home/couchdb -type d -exec chmod 0770 {} \;
+sudo chmod 0644 /home/couchdb/couchdb/etc/*
 
 sudo tee /etc/systemd/system/couchdb.service<<EOF
 [Unit]
@@ -44,6 +41,13 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 EOF
+
+# allow access from external IPs
+# edit /home/couchdb/etc/local.ini
+# Change this line:
+#  ;bind_address = 127.0.0.1
+#  to:
+#  bind_address = 0.0.0.0
 
 sudo systemctl daemon-reload
 sudo systemctl start couchdb.service

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "install redis and hiredis"
-sudo apt-get --yes --allow-unauthenticated install redis-server
+sudo apt --yes --allow-unauthenticated install redis-server
 
 
 sudo npm install --unsafe-perm -g hiredis
@@ -26,8 +26,8 @@ fi
 echo "setup smile_backend systemd service"
 cp ~/smile_v2/vagrant/smile_backend.service /tmp/smile_backend.service
 sed -i 's@/vagrant@'"$HOME"/smile_v2'@' /tmp/smile_backend.service
-sed -i 's@/usr/bin/node@'"$HOME"/.node_modules/bin/node'@' /tmp/smile_backend.service
-sudo cp /tmp/smile_backend.service /usr/lib/systemd/system/smile_backend.service
+#sed -i 's@/usr/bin/node@'"$HOME"/.node_modules/bin/node'@' /tmp/smile_backend.service
+sudo cp /tmp/smile_backend.service /lib/systemd/system/smile_backend.service
 
 #echo "configure elasticsearch"
 
@@ -82,7 +82,7 @@ sudo npm install
 echo "npm packages put in"
 
 cd ~/smile-pi/setup_files/
-sudo cp redis.service /usr/lib/systemd/system/redis.service
+sudo cp redis.service /lib/systemd/system/redis.service
 echo "redis.service accounted for"
 
 ### troubleshooting code, may remove later , to get smile_backend service working ####
