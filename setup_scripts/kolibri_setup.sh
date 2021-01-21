@@ -3,8 +3,6 @@
 echo ""
 echo "Kolibri setup"
 echo ""
---yes --allow-unauthenticated
-
 
 sudo apt --yes --allow-unauthenticated install libffi-dev python3-pip python3-pkg-resources dirmngr
 sudo pip3 install pip setuptools --upgrade
@@ -16,15 +14,9 @@ sudo apt update
 
 sudo apt install kolibri kolibri-server
 
-
-
 cd ~
 rm -rf ~/smile-pi
-git clone https://github.com/canuk/smile-pi
-
-# sudo cp ~/smile-pi/setup_files/kalite.service /usr/lib/systemd/system/
-# sudo systemctl enable kalite
-# sudo systemctl start kalite
+git clone https://github.com/smile-pi/smile-pi
 
 cd; cd -
 cd ~/smile-pi
