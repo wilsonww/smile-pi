@@ -1,4 +1,4 @@
-nano #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # sudo apt edit-sources
 # deb http://raspbian.raspberrypi.org/raspbian bullseye main contrib non-free rpi
