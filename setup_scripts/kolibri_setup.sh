@@ -18,5 +18,10 @@ cd ~
 rm -rf ~/smile-pi
 git clone https://github.com/smile-pi/smile-pi
 
+sudo cp ~/smile-pi/setup_files/nginx.conf.rpi3 /etc/nginx/nginx.conf
+sudo rm /usr/share/nginx/html/index.html
+sudo cp ~/smile-pi/minimal_portal/* /usr/share/nginx/html/
+sudo systemctl restart nginx
+
 cd; cd -
 cd ~/smile-pi
