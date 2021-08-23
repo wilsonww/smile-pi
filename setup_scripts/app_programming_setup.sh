@@ -22,8 +22,16 @@ sudo cp ~/smile-pi/portal_data_files/code-monster.png /usr/share/nginx/html/code
 echo "download blockly games and add to nginx"
 git clone https://github.com/canuk/blockly-games-offline.git blockly-games-offline
 cd blockly-games-offline
+echo "English"
 unzip blockly-games-en.zip
 sudo mv blockly-games /usr/share/nginx/html/blockly-games-en
+echo "Spanish"
+unzip blockly-games-es.zip
+sudo mv blockly-games /usr/share/nginx/html/blockly-games-es
+echo "French"
+unzip blockly-games-fr.zip
+sudo mv blockly-games /usr/share/nginx/html/blockly-games-fr
+
 sudo cp ~/smile-pi/portal_data_files/blockly_games.txt /usr/share/nginx/html/blockly-games-en/portal_data.txt
 sudo cp ~/smile-pi/portal_data_files/blockly-games-logo.png /usr/share/nginx/html/blockly-games-en/
 
