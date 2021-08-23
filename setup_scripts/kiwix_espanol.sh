@@ -8,5 +8,5 @@ echo "downloading Español mini Wikipedia ZIM file (~2GB)"
 wget https://download.kiwix.org/zim/wikipedia_es_all_mini.zim --progress=bar:force
 
 echo "Adding to Kiwix Library"
-kiwix-manage library.xml add wikipedia_es_all_mini.zim
+~/kiwix/kiwix-manage library.xml add ~/kiwix/wikipedia_es_all_mini.zim
 sudo systemctl restart kiwix

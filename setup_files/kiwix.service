@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/share/kiwix/kiwix-serve --port=8001 --library ~/kiwix/library.xml 
+ExecStart=/usr/share/kiwix/kiwix-serve --port=8001 --library /home/pi/kiwix/library.xml 
 KillSignal=SIGINT
 Restart=on-failure
 RestartSec=5

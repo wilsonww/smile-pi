@@ -8,5 +8,5 @@ echo "downloading Simple English Wikipedia ZIM file (~2GB)"
 wget https://download.kiwix.org/zim/wikipedia_en_simple_all_maxi.zim --progress=bar:force
 
 echo "Adding to Kiwix Library"
-kiwix-manage library.xml add wikipedia_es_all_mini.zim
+~/kiwix/kiwix-manage library.xml add ~/kiwix/wikipedia_en_simple_all_maxi.zim
 sudo systemctl restart kiwix
