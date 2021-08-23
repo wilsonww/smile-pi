@@ -12,7 +12,7 @@ sudo su -c 'echo "deb http://ppa.launchpad.net/learningequality/kolibri/ubuntu b
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys DC5BAA93F9E4AE4F0411F97C74F88ADB3194DD81
 sudo apt update
 
-sudo apt install kolibri kolibri-server
+sudo apt --yes --allow-unauthenticated install kolibri kolibri-server
 
 cd ~
 rm -rf ~/smile-pi
