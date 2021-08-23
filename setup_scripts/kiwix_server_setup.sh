@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 # Install the Kiwix (Wikipedia) Server
+mkdir -p ~/kiwix
+cd ~/kiwix
 
 if [ ! -f ~/kiwix/kiwix-serve ]; then
   echo "download the kiwix-server binary"
