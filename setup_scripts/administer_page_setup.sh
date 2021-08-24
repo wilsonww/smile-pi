@@ -2,17 +2,17 @@
 echo "install and configure php tools needed for the shutdown / reboot script"
 echo "nginx php configurations and c installation"
 
-sudo apt-get --yes --force-yes install php5-fpm
-sudo systemctl enable php5-fpm
+sudo apt-get --yes --allow-unauthenticated install php7.3-fpm
+sudo systemctl enable php7.3-fpm
 
 sudo \cp ~/smile-pi/setup_files/nginx.conf.rpi3 /etc/nginx/nginx.conf
 sudo \cp ~/smile-pi/setup_files/fastcgi-php.conf.rpi3 /etc/nginx/snippets/fastcgi-php.conf
 
 sudo systemctl stop nginx
-sudo systemctl stop php5-fpm
+sudo systemctl stop php7.3-fpm
 
 sudo systemctl start nginx
-sudo systemctl start php5-fpm
+sudo systemctl start php7.3-fpm
 
 echo "setup shutdown_php.c and reboot_php.c files"
 
