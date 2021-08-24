@@ -13,6 +13,8 @@ sudo adduser --system \
         --group --gecos \
         "CouchDB Administrator" couchdb
 
+cd 
+
 wget http://apache.cs.utah.edu/couchdb/source/2.3.1/apache-couchdb-2.3.1.tar.gz
 
 tar xvf apache-couchdb-*.tar.gz
