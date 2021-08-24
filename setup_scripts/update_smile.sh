@@ -24,7 +24,9 @@ sudo chmod +755 $HOME/smile_v2/backend
 sudo chmod +755 $HOME/smile_v2/backend/main.js
 
 echo "restart smile_backend"
-sudo systemctl restart smile_backend
+sudo cp ~/smile-pi/setup_files/smile_backend.service /usr/lib/systemd/system
+sudo systemctl start smile_backend
+sudo systemctl enable smile_backend
 
 echo "restart nginx"
 sudo systemctl restart nginx
