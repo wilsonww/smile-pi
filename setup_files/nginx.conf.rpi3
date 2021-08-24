@@ -52,7 +52,7 @@ http {
         }
 
         root   /usr/share/nginx/html;
-        index  index.php index.html index.htm;
+        index index.php index.html index.htm;
 
         #location / {
         #    try_files $uri $uri/ /index.html;
