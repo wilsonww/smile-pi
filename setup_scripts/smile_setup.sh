@@ -7,8 +7,9 @@ sudo apt --yes --allow-unauthenticated install redis-server
 sudo npm install --unsafe-perm -g hiredis
 sudo npm install --unsafe-perm -g redis
 
-echo "install couchdb"
-sudo apt-get --yes --allow-unauthenticated install couchdb
+#couchdb installed manually elsewhere
+#echo "install couchdb"
+#sudo apt-get --yes --allow-unauthenticated install couchdb
 
 #echo "install elasticsearch"
 #sudo pacman -S --noconfirm --needed elasticsearch
@@ -113,7 +114,7 @@ echo "systemctl for smile_backend"
 sudo systemctl enable smile_backend
 sudo systemctl start smile_backend
 
-#cp ~/smile-pi/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
+cp ~/smile-pi/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
 cd ~/smile_v2/backend/assets/couchdb/
 chmod +x couch_setup.sh
 sh couch_setup.sh
